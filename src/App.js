@@ -4,6 +4,7 @@ import './App.css';
 function App() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [isMuted, setIsMuted] = useState(true);
+  const [playerInitialized, setPlayerInitialized] = useState(false);
 
   const toggleMenu = () => {
     setIsMenuOpen(!isMenuOpen);
@@ -21,7 +22,7 @@ function App() {
     return () => window.removeEventListener('resize', updateVh);
   }, []);
 
-  useEffect(() => {
+  const initializePlayer = () => {
     const tag = document.createElement('script');
     tag.src = "https://www.youtube.com/iframe_api";
     const firstScriptTag = document.getElementsByTagName('script')[0];
@@ -35,31 +36,41 @@ function App() {
           autoplay: 1,
           controls: 0,
           loop: 1,
-          mute: 1,
+          mute: isMuted ? 1 : 0,
           showinfo: 0,
           modestbranding: 1,
         },
         events: {
           onReady: (event) => {
-            event.target.mute();
+            if (isMuted) {
+              event.target.mute();
+            } else {
+              event.target.unMute();
+            }
             event.target.playVideo();
           },
         },
       });
 
-      window.youtubePlayer = player; // プレーヤーをグローバルに参照
+      window.youtubePlayer = player;
+      setPlayerInitialized(true);
     };
-  }, []);
+  };
 
   const toggleMute = () => {
-    const player = window.youtubePlayer;
-    if (player) {
-      if (isMuted) {
-        player.unMute();
-      } else {
-        player.mute();
+    if (!playerInitialized) {
+      initializePlayer(); // プレーヤーが初期化されていない場合、初期化して再生
+    } else {
+      const player = window.youtubePlayer;
+      if (player) {
+        if (isMuted) {
+          player.unMute();
+          player.playVideo();
+        } else {
+          player.mute();
+        }
+        setIsMuted(!isMuted);
       }
-      setIsMuted(!isMuted);
     }
   };
 
