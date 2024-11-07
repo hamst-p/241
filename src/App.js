@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import './App.css';
 
 function App() {
@@ -8,8 +8,20 @@ function App() {
     setIsMenuOpen(!isMenuOpen);
   };
 
+  useEffect(() => {
+    const updateVh = () => {
+      const vh = window.innerHeight * 0.01;
+      document.documentElement.style.setProperty('--vh', `${vh}px`);
+    };
+
+    updateVh();
+    window.addEventListener('resize', updateVh);
+
+    return () => window.removeEventListener('resize', updateVh);
+  }, []);
+
   return (
-    <div className="App">
+    <div className="App" style={{ height: 'calc(var(--vh, 1vh) * 100)' }}>
       <div className="top-bar">
         <p>9qY5Bu9qLnrddN8cx7jtQim2Sx8ywUszatUp3E4VJn6a</p>
       </div>
