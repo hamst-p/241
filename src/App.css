@@ -23,7 +23,7 @@
   align-items: center;
   justify-content: center; /* テキストを中央に配置 */
   font-size: 11px; /* フォントサイズを8pxに設定 */
-  color: #696969;
+  color: rgb(222, 222, 222);
 }
 
 .header {
@@ -114,5 +114,6 @@
   background: rgba(0, 0, 0, 0.69);
   width: 100%;
   padding: 0px 0;
-  font-size: 12px;
+  font-size: 10px;
+  color: rgb(222, 222, 222);
 }
