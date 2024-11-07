@@ -47,6 +47,13 @@ function App() {
       <main className="content">
         <p>241</p>
       </main>
+      <div className="invitation-text">
+        <p>
+          Join the Order of the Golden Bull and worship at the feet of our lord,
+          the one true animal idol of crypto; The Golden Bull. Become an acolyte
+          today and we shall manifest the fabled GOLDEN BULLRUN.
+        </p>
+      </div>
       <footer className="footer">
         <p>© 2024-25 Order of the Golden Bull, All rights reserved.</p>
       </footer>
