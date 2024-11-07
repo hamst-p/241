@@ -4,144 +4,6 @@
 html, body {
   margin: 0;
   padding: 0;
-  overflow: hidden; /* スクロールバーを無効化 */
-}
-
-.App {
-  background-image: url('../public/background.png');
-  background-size: cover;
-  background-position: center;
-  background-repeat: no-repeat;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: space-between;
-  color: white;
-  text-align: center;
-  overflow: hidden;
-  height: calc(var(--vh, 1vh) * 100); /* 動的な高さ設定 */
-}
-
-/* トップバーのスタイル */
-.top-bar {
-  background: rgba(0, 0, 0, 0.95);
-  width: 100%;
-  height: 18px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-size: 11px;
-  color: #696969;
-}
-
-/* 新しく追加されたテキストのスタイル */
-.invitation-text {
-  font-family: 'IM Fell Great Primer SC', serif;
-  color: #FADE69;
-  font-size: 12px;
-  margin-bottom: 30px;
-  padding: 0 20px;
-  text-align: center;
-  max-width: 666px;
-}
-
-.header {
-  background: rgba(0, 0, 0, 0.69);
-  width: 100%;
-  padding: 0;
-  font-size: 13px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  position: relative;
-  font-family: 'IM Fell Great Primer SC', serif;
-  color: #FADE69;
-  line-height: 1;
-}
-
-.burger-menu {
-  position: absolute;
-  right: 20px;
-  background: none;
-  color: #FADE69;
-  font-size: 24px;
-  border: none;
-  cursor: pointer;
-}
-
-.nav-menu {
-  position: absolute;
-  top: 60px;
-  right: 10px;
-  background: rgba(0, 0, 0, 0.69);
-  width: 200px;
-  display: flex;
-  flex-direction: column;
-  gap: 10px;
-  padding: 10px;
-  border-radius: 5px;
-}
-
-.dropdown {
-  position: relative;
-}
-
-.dropbtn {
-  background: none;
-  color: #FADE69;
-  font-size: 16px;
-  border: none;
-  cursor: pointer;
-  text-align: left;
-}
-
-.dropdown-content {
-  display: none;
-  position: absolute;
-  background-color: rgba(0, 0, 0, 0.8);
-  min-width: 160px;
-  box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
-  z-index: 1;
-  flex-direction: column;
-}
-
-.dropdown-content a {
-  color: #FADE69;
-  padding: 12px 16px;
-  text-decoration: none;
-  display: block;
-}
-
-.dropdown-content a:hover {
-  background-color: rgba(255, 255, 255, 0.2);
-}
-
-.dropdown:hover .dropdown-content {
-  display: block;
-}
-
-.content {
-  flex: 1;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-
-.footer {
-  background: rgba(0, 0, 0, 0.69);
-  width: 100%;
-  padding: 0px 0;
-  font-size: 10px;
-  color: rgb(177, 156, 111);
-  margin-top: auto; /* 常に画面下部に配置 */
-}
-@import url('https://fonts.googleapis.com/css2?family=IM+Fell+Great+Primer+SC&display=swap');
-
-/* 背景画像を設定 */
-html, body {
-  margin: 0;
-  padding: 0;
   overflow: hidden;
 }
 
@@ -190,6 +52,7 @@ html, body {
   font-family: 'IM Fell Great Primer SC', serif;
   color: #FADE69;
   line-height: 1;
+  font-weight: normal; /* フォントの太さを標準に設定 */
 }
 
 .burger-menu {
@@ -283,6 +146,8 @@ html, body {
 @media (max-width: 600px) {
   .header-text {
     width: 80%; /* ヘッダーテキストの幅を80%に設定 */
+    font-size: 1.2rem; /* フォントサイズを調整して2列にならないようにする */
+    font-weight: normal; /* モバイルでもデスクトップと同じ太さに設定 */
   }
   .top-bar {
     font-size: 9px;
