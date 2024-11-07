@@ -4,7 +4,8 @@
 html, body {
   margin: 0;
   padding: 0;
-  overflow: hidden; /* スクロールバーを無効化 */
+  height: 100%;
+  overflow-x: hidden; /* 横スクロールを無効化 */
 }
 
 .App {
@@ -13,14 +14,13 @@ html, body {
   background-position: center;
   background-repeat: no-repeat;
   min-height: 100vh; /* コンテンツが画面全体を埋めるように調整 */
-  height: auto; /* Safariでのアドレスバーを考慮 */
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: space-between;
   color: white;
   text-align: center;
-  overflow: hidden; /* スクロールを完全に無効化 */
+  overflow: hidden;
 }
 
 /* トップバーのスタイル */
@@ -41,156 +41,4 @@ html, body {
   color: #FADE69;
   font-size: 12px;
   margin-bottom: 30px;
-  padding: 0 20px;
-  text-align: center;
-  max-width: 666px;
-}
-
-.header {
-  background: rgba(0, 0, 0, 0.69);
-  width: 100%;
-  padding: 0;
-  font-size: 13px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  position: relative;
-  font-family: 'IM Fell Great Primer SC', serif;
-  color: #FADE69;
-  line-height: 1;
-}
-
-.burger-menu {
-  position: absolute;
-  right: 20px;
-  background: none;
-  color: #FADE69;
-  font-size: 24px;
-  border: none;
-  cursor: pointer;
-}
-
-.nav-menu {
-  position: absolute;
-  top: 60px;
-  right: 10px;
-  background: rgba(0, 0, 0, 0.69);
-  width: 200px;
-  display: flex;
-  flex-direction: column;
-  gap: 10px;
-  padding: 10px;
-  border-radius: 5px;
-}
-
-.dropdown {
-  position: relative;
-}
-
-.dropbtn {
-  background: none;
-  color: #FADE69;
-  font-size: 16px;
-  border: none;
-  cursor: pointer;
-  text-align: left;
-}
-
-.dropdown-content {
-  display: none;
-  position: absolute;
-  background-color: rgba(0, 0, 0, 0.8);
-  min-width: 160px;
-  box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
-  z-index: 1;
-  flex-direction: column;
-}
-
-.dropdown-content a {
-  color: #FADE69;
-  padding: 12px 16px;
-  text-decoration: none;
-  display: block;
-}
-
-.dropdown-content a:hover {
-  background-color: rgba(255, 255, 255, 0.2);
-}
-
-.dropdown:hover .dropdown-content {
-  display: block;
-}
-
-.content {
-  flex: 1;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-
-.footer {
-  background: rgba(0, 0, 0, 0.69);
-  width: 100%;
-  padding: 0px 0;
-  font-size: 10px;
-  color: rgb(177, 156, 111);
-  margin-top: auto; /* 常に画面下部に配置 */
-}
-
-/* --- レスポンシブデザイン --- */
-
-/* スマートフォン（600px以下） */
-@media (max-width: 600px) {
-  .App {
-    background-size: cover;
-    background-position: center center;
-    background-repeat: no-repeat;
-  }
-  .header {
-    font-size: 10px;
-  }
-  .top-bar {
-    font-size: 9px;
-  }
-  .invitation-text {
-    font-size: 10px;
-    max-width: 90%;
-  }
-  .burger-menu {
-    font-size: 20px;
-  }
-  .dropbtn {
-    font-size: 14px;
-  }
-  .dropdown-content a {
-    font-size: 12px;
-    padding: 8px 12px;
-  }
-}
-
-/* タブレット（600px～1024px） */
-@media (min-width: 601px) and (max-width: 1024px) {
-  .App {
-    background-size: cover;
-  }
-  .header {
-    font-size: 12px;
-  }
-  .top-bar {
-    font-size: 10px;
-  }
-  .invitation-text {
-    font-size: 11px;
-    max-width: 80%;
-  }
-  .burger-menu {
-    font-size: 22px;
-  }
-  .dropbtn {
-    font-size: 15px;
-  }
-  .dropdown-content a {
-    font-size: 13px;
-    padding: 10px 14px;
-  }
-}
+  padding: 
