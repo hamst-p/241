@@ -45,7 +45,6 @@ function App() {
         )}
       </header>
       <main className="content">
-        <p>241</p>
       </main>
       <div className="invitation-text">
         <p>
