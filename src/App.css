@@ -141,7 +141,7 @@ html, body {
 /* スマートフォン（600px以下） */
 @media (max-width: 600px) {
   .App {
-    background-size: contain;
+    background-size: cover;
     background-position: center center;
     background-repeat: no-repeat;
   }
