@@ -32,7 +32,7 @@ html, body {
   align-items: center;
   justify-content: center;
   font-size: 11px;
-  color: (rgb(177, 156, 111, 0.85));
+  color: rgba(177, 156, 111); /* 85%の透過 */
 }
 
 /* ヘッダーテキストのスタイル */
