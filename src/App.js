@@ -3,6 +3,7 @@ import './App.css';
 
 function App() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const [isMuted, setIsMuted] = useState(true);
 
   const toggleMenu = () => {
     setIsMenuOpen(!isMenuOpen);
@@ -19,6 +20,48 @@ function App() {
 
     return () => window.removeEventListener('resize', updateVh);
   }, []);
+
+  useEffect(() => {
+    const tag = document.createElement('script');
+    tag.src = "https://www.youtube.com/iframe_api";
+    const firstScriptTag = document.getElementsByTagName('script')[0];
+    firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);
+
+    window.onYouTubeIframeAPIReady = () => {
+      const player = new window.YT.Player('youtube-player', {
+        videoId: '2gqET_Erc0E',
+        playerVars: {
+          playlist: 'PLeYvP-fNbBymBLC8aNufRAZBFy0HFHhbR',
+          autoplay: 1,
+          controls: 0,
+          loop: 1,
+          mute: 1,
+          showinfo: 0,
+          modestbranding: 1,
+        },
+        events: {
+          onReady: (event) => {
+            event.target.mute();
+            event.target.playVideo();
+          },
+        },
+      });
+
+      window.youtubePlayer = player; // プレーヤーをグローバルに参照
+    };
+  }, []);
+
+  const toggleMute = () => {
+    const player = window.youtubePlayer;
+    if (player) {
+      if (isMuted) {
+        player.unMute();
+      } else {
+        player.mute();
+      }
+      setIsMuted(!isMuted);
+    }
+  };
 
   return (
     <div className="App" style={{ height: 'calc(var(--vh, 1vh) * 100)' }}>
@@ -68,6 +111,10 @@ function App() {
       <footer className="footer">
         <p>© 2024-25 Order of the Golden Bull, All rights reserved.</p>
       </footer>
+      <div id="youtube-player" style={{ display: 'none' }}></div> {/* 映像を非表示 */}
+      <button className="mute-button" onClick={toggleMute}>
+        {isMuted ? '🔈 Unmute' : '🔇 Mute'}
+      </button>
     </div>
   );
 }
