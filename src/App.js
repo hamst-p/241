@@ -10,6 +10,9 @@ function App() {
 
   return (
     <div className="App">
+      <div className="top-bar">
+        <p>9qY5Bu9qLnrddN8cx7jtQim2Sx8ywUszatUp3E4VJn6a</p>
+      </div>
       <header className="header">
         <h1>Order of the Golden Bull</h1>
         <button className="burger-menu" onClick={toggleMenu}>
