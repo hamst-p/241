@@ -45,7 +45,7 @@ html, body {
   font-family: 'IM Fell Great Primer SC', serif;
   color: #FADE69;
   line-height: 1;
-  font-weight: normal; /* デスクトップとモバイルで一貫 */
+  font-weight: normal;
 }
 
 .header-text {
@@ -127,9 +127,9 @@ html, body {
 
 .dock-menu {
   display: flex;
-  justify-content: space-evenly; /* アイコンを均等配置 */
-  width: 100%; /* 背景幅にフィット */
-  padding: 0 20px; /* Dock内の左右の余白 */
+  justify-content: space-evenly;
+  width: 100%;
+  padding: 0 20px;
 }
 
 .dock-icon {
@@ -145,8 +145,14 @@ html, body {
 
 @media (max-width: 600px) {
   .header-text {
-    font-size: 1rem; /* モバイル用にフォントサイズを小さく調整 */
-    font-weight: normal; /* デスクトップと同じフォント太さ */
+    font-size: 1rem;
+    font-weight: normal;
+  }
+
+  .audio-controls {
+    top: calc(18px + 5px); /* ヘッダーの下5pxに配置 */
+    left: 50%;
+    transform: translateX(-50%);
   }
 
   .dock {
@@ -156,7 +162,7 @@ html, body {
   }
 
   .dock-menu {
-    padding: 0 10px; /* モバイルでの左右の余白を調整 */
+    padding: 0 10px;
   }
 
   .dock-icon {
@@ -164,4 +170,3 @@ html, body {
     height: 50px;
   }
 }
-
