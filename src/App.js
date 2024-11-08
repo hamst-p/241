@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import './App.css';
-import Dock from './Dock'; // Dockをインポート
+import Dock from './Dock';
 
 function App() {
   const [isMuted, setIsMuted] = useState(true);
@@ -13,7 +13,6 @@ function App() {
       const vh = window.innerHeight * 0.01;
       document.documentElement.style.setProperty('--vh', `${vh}px`);
     };
-
     updateVh();
     window.addEventListener('resize', updateVh);
 
@@ -48,15 +47,13 @@ function App() {
           onError: (event) => {
             console.error('YouTube Player Error:', event.data);
             setIsLoading(false);
-          }
+          },
         },
       });
     };
 
     return () => {
-      if (player) {
-        player.destroy();
-      }
+      if (player) player.destroy();
     };
   }, []);
 
@@ -88,9 +85,12 @@ function App() {
 
   return (
     <div className="App" style={{ height: '100svh' }}>
+      <div className="background-layer"></div>
+
       <div className="top-bar">
         <p>9qY5Bu9qLnrddN8cx7jtQim2Sx8ywUszatUp3E4VJn6a</p>
       </div>
+
       <header className="header">
         <h1 className="header-text">Order of the Golden Bullrun</h1>
       </header>
@@ -105,16 +105,16 @@ function App() {
 
       <main className="content">
         <div id="youtube-player" style={{ position: 'absolute', opacity: 0, pointerEvents: 'none', height: '1px', width: '1px' }}></div>
-        
+
         <div className="audio-controls">
-          <button 
+          <button
             className="playback-button"
             onClick={togglePlayback}
             disabled={isLoading}
           >
             {isLoading ? '⌛' : isPlaying ? '⏸️' : '▶️'}
           </button>
-          <button 
+          <button
             className="mute-button"
             onClick={toggleMute}
             disabled={isLoading}
@@ -124,7 +124,6 @@ function App() {
         </div>
       </main>
 
-      {/* Dockをフッターの直上に配置 */}
       <Dock />
 
       <footer className="footer">
