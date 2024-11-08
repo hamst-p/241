@@ -45,7 +45,11 @@ html, body {
   font-family: 'IM Fell Great Primer SC', serif;
   color: #FADE69;
   line-height: 1;
-  font-weight: normal;
+  font-weight: normal; /* デスクトップとモバイルで一貫 */
+}
+
+.header-text {
+  width: 100%;
 }
 
 .invitation-text {
@@ -140,6 +144,11 @@ html, body {
 }
 
 @media (max-width: 600px) {
+  .header-text {
+    font-size: 1rem; /* モバイル用にフォントサイズを小さく調整 */
+    font-weight: normal; /* デスクトップと同じフォント太さ */
+  }
+
   .dock {
     width: 90%;
     height: 70px;
