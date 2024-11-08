@@ -95,7 +95,7 @@ function App() {
   };
 
   return (
-    <div className="App" style={{ height: 'calc(var(--vh, 1vh) * 100)' }}>
+    <div className="App" style={{ height: '100svh' }}>
       <div className="top-bar">
         <p>9qY5Bu9qLnrddN8cx7jtQim2Sx8ywUszatUp3E4VJn6a</p>
       </div>
