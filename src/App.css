@@ -108,7 +108,7 @@ html, body {
 
 .dock {
   position: fixed;
-  bottom: 60px; /* フッターの高さと間隔を考慮 */
+  bottom: 60px; /* フッターの高さ10pxと10pxの間隔を考慮 */
   left: 50%;
   transform: translateX(-50%);
   width: 560px;
@@ -123,7 +123,9 @@ html, body {
 
 .dock-menu {
   display: flex;
-  gap: 20px;
+  justify-content: space-evenly; /* アイコンを均等配置 */
+  width: 100%; /* 背景幅にフィット */
+  padding: 0 20px; /* Dock内の左右の余白 */
 }
 
 .dock-icon {
@@ -141,7 +143,11 @@ html, body {
   .dock {
     width: 90%;
     height: 70px;
-    bottom: 55px;
+    bottom: 60px;
+  }
+
+  .dock-menu {
+    padding: 0 10px; /* モバイルでの左右の余白を調整 */
   }
 
   .dock-icon {
@@ -149,3 +155,4 @@ html, body {
     height: 50px;
   }
 }
+
