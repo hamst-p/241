@@ -163,6 +163,11 @@ html, body {
     font-weight: normal;
   }
 
+  .invitation-text {
+    width: 69%;
+    margin-top: 5px; 
+  }
+
   .audio-controls {
     top: calc(18px + 60px);
     left: 10px;
@@ -170,19 +175,15 @@ html, body {
     gap: 10px;
   }
 
-  .invitation-text {
-    width: 69%;
-    margin-top: 60px;
-  }
-
   .dock {
-    width: 90%;
+    width: 85%;
     height: 70px;
-    bottom: 60px;
+    bottom: 40px;
+    margin-bottom: 5px; /* フッターの5px上に配置 */
   }
 
   .dock-menu {
-    padding: 0 10px;
+    padding: 0 4px;
   }
 
   .dock-icon {
