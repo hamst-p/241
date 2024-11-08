@@ -100,7 +100,7 @@ function App() {
         <p>9qY5Bu9qLnrddN8cx7jtQim2Sx8ywUszatUp3E4VJn6a</p>
       </div>
       <header className="header">
-        <h1 className="header-text">Order of the Golden Bull</h1>
+        <h1 className="header-text">Order of the Golden Bullrun</h1>
         <button className="burger-menu" onClick={toggleMenu}>
           ☰
         </button>
@@ -158,7 +158,7 @@ function App() {
         </p>
       </div>
       <footer className="footer">
-        <p>© 2024-25 Order of the Golden Bull, All rights reserved.</p>
+        <p>© 2024 Order of the Golden Bullrun, All rights reserved.</p>
       </footer>
     </div>
   );
