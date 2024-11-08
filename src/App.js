@@ -1,16 +1,12 @@
 import React, { useState, useEffect } from 'react';
 import './App.css';
+import Dock from './Dock'; // Dockをインポート
 
 function App() {
-  const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [isMuted, setIsMuted] = useState(true);
   const [player, setPlayer] = useState(null);
   const [isPlaying, setIsPlaying] = useState(false);
   const [isLoading, setIsLoading] = useState(true);
-
-  const toggleMenu = () => {
-    setIsMenuOpen(!isMenuOpen);
-  };
 
   useEffect(() => {
     const updateVh = () => {
@@ -30,10 +26,9 @@ function App() {
     const firstScriptTag = document.getElementsByTagName('script')[0];
     firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);
 
-    // YouTube Iframe APIの読み込み完了後にプレイヤーを作成
     window.onYouTubeIframeAPIReady = () => {
       const newPlayer = new window.YT.Player('youtube-player', {
-        videoId: '2gqET_Erc0E', // 指定された動画ID
+        videoId: '2gqET_Erc0E',
         playerVars: {
           autoplay: 0,
           controls: 0,
@@ -58,7 +53,6 @@ function App() {
       });
     };
 
-    // クリーンアップ関数
     return () => {
       if (player) {
         player.destroy();
@@ -78,6 +72,7 @@ function App() {
         setIsMuted(false);
       }
     }
+    setIsPlaying(!isPlaying);
   };
 
   const toggleMute = () => {
@@ -85,9 +80,6 @@ function App() {
 
     if (isMuted) {
       player.unMute();
-      if (!isPlaying) {
-        player.playVideo();
-      }
     } else {
       player.mute();
     }
@@ -101,35 +93,16 @@ function App() {
       </div>
       <header className="header">
         <h1 className="header-text">Order of the Golden Bullrun</h1>
-        <button className="burger-menu" onClick={toggleMenu}>
-          ☰
-        </button>
-        {isMenuOpen && (
-          <nav className="nav-menu">
-            <div className="dropdown">
-              <button className="dropbtn">Chart</button>
-              <div className="dropdown-content">
-                <a href="https://dexscreener.com/solana/FkKS7kUJXei5x8E8dBgzpAXoriYbZU8skPKx5Mt6f54q" target="_blank" rel="noopener noreferrer">Dexscreener</a>
-                <a href="https://www.dextools.io/app/en/solana/pair-explorer/FkKS7kUJXei5x8E8dBgzpAXoriYbZU8skPKx5Mt6f54q?t=1730870236845" target="_blank" rel="noopener noreferrer">Dextools</a>
-              </div>
-            </div>
-            <div className="dropdown">
-              <button className="dropbtn">Swap</button>
-              <div className="dropdown-content">
-                <a href="https://raydium.io/swap/?inputMint=sol&outputMint=9qY5Bu9qLnrddN8cx7jtQim2Sx8ywUszatUp3E4VJn6a" target="_blank" rel="noopener noreferrer">Raydium</a>
-                <a href="https://jup.ag/swap/SOL-9qY5Bu9qLnrddN8cx7jtQim2Sx8ywUszatUp3E4VJn6a" target="_blank" rel="noopener noreferrer">Jupiter</a>
-              </div>
-            </div>
-            <div className="dropdown">
-              <button className="dropbtn">Social</button>
-              <div className="dropdown-content">
-                <a href="https://x.com/Goldenctosol" target="_blank" rel="noopener noreferrer">X</a>
-                <a href="http://t.me/Goldensolcta" target="_blank" rel="noopener noreferrer">Telegram</a>
-              </div>
-            </div>
-          </nav>
-        )}
       </header>
+
+      <div className="invitation-text">
+        <p>
+          Join the Order of the Golden Bull and worship at the feet of our lord,
+          the one true animal idol of crypto; The Golden Bull. Become an acolyte
+          today and we shall manifest the fabled GOLDEN BULLRUN.
+        </p>
+      </div>
+
       <main className="content">
         <div id="youtube-player" style={{ position: 'absolute', opacity: 0, pointerEvents: 'none', height: '1px', width: '1px' }}></div>
         
@@ -150,13 +123,10 @@ function App() {
           </button>
         </div>
       </main>
-      <div className="invitation-text">
-        <p>
-          Join the Order of the Golden Bull and worship at the feet of our lord,
-          the one true animal idol of crypto; The Golden Bull. Become an acolyte
-          today and we shall manifest the fabled GOLDEN BULLRUN.
-        </p>
-      </div>
+
+      {/* Dockをフッターの直上に配置 */}
+      <Dock />
+
       <footer className="footer">
         <p>© 2024 Order of the Golden Bullrun, All rights reserved.</p>
       </footer>
