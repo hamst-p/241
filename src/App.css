@@ -24,12 +24,12 @@ html, body {
 
 .audio-controls {
   position: fixed;
-  bottom: 40px; /* フッターの上に配置 -> 40px */
-  right: 20px;
+  top: 90px; /* ヘッダーの下に配置 */
+  left: 3%; /* 画面の左側に配置 */
   display: flex;
   gap: 10px;
   z-index: 1000;
-  padding-bottom: 5px; /* フッターとの間に5pxのパディング */
+  padding-top: 5px;
 }
 
 .audio-controls button {
@@ -206,9 +206,9 @@ html, body {
   }
 
   .audio-controls {
-    bottom: 40px; /* モバイルでもフッターの上に配置 60 -> 40 */
-    right: 15px;
-    padding-bottom: 0px; /* フッターとの間に5pxのパディング -> 0 */
+    top: 90px; /* モバイルでもヘッダーの下に配置 */
+    left: 15px;
+    padding-top: 5px;
   }
 
   .audio-controls button {
