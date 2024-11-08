@@ -4,7 +4,9 @@ import './App.css';
 function App() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [isMuted, setIsMuted] = useState(true);
-  const [playerInitialized, setPlayerInitialized] = useState(false);
+  const [player, setPlayer] = useState(null);
+  const [isPlaying, setIsPlaying] = useState(false);
+  const [isLoading, setIsLoading] = useState(true);
 
   const toggleMenu = () => {
     setIsMenuOpen(!isMenuOpen);
@@ -22,56 +24,74 @@ function App() {
     return () => window.removeEventListener('resize', updateVh);
   }, []);
 
-  const initializePlayer = () => {
+  useEffect(() => {
     const tag = document.createElement('script');
     tag.src = "https://www.youtube.com/iframe_api";
     const firstScriptTag = document.getElementsByTagName('script')[0];
     firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);
 
+    // YouTube Iframe APIの読み込み完了後にプレイヤーを作成
     window.onYouTubeIframeAPIReady = () => {
-      const player = new window.YT.Player('youtube-player', {
-        videoId: '2gqET_Erc0E',
+      const newPlayer = new window.YT.Player('youtube-player', {
+        videoId: '2gqET_Erc0E', // 指定された動画ID
         playerVars: {
-          playlist: 'PLeYvP-fNbBymBLC8aNufRAZBFy0HFHhbR',
-          autoplay: 1,
+          autoplay: 0,
           controls: 0,
           loop: 1,
-          mute: isMuted ? 1 : 0,
+          mute: 1,
           showinfo: 0,
           modestbranding: 1,
         },
         events: {
           onReady: (event) => {
-            if (isMuted) {
-              event.target.mute();
-            } else {
-              event.target.unMute();
-            }
-            event.target.playVideo();
+            setPlayer(event.target);
+            setIsLoading(false);
           },
+          onStateChange: (event) => {
+            setIsPlaying(event.data === window.YT.PlayerState.PLAYING);
+          },
+          onError: (event) => {
+            console.error('YouTube Player Error:', event.data);
+            setIsLoading(false);
+          }
         },
       });
-
-      window.youtubePlayer = player;
-      setPlayerInitialized(true);
     };
+
+    // クリーンアップ関数
+    return () => {
+      if (player) {
+        player.destroy();
+      }
+    };
+  }, []);
+
+  const togglePlayback = () => {
+    if (!player) return;
+
+    if (isPlaying) {
+      player.pauseVideo();
+    } else {
+      player.playVideo();
+      if (isMuted) {
+        player.unMute();
+        setIsMuted(false);
+      }
+    }
   };
 
   const toggleMute = () => {
-    if (!playerInitialized) {
-      initializePlayer(); // プレーヤーが初期化されていない場合、初期化して再生
-    } else {
-      const player = window.youtubePlayer;
-      if (player) {
-        if (isMuted) {
-          player.unMute();
-          player.playVideo();
-        } else {
-          player.mute();
-        }
-        setIsMuted(!isMuted);
+    if (!player) return;
+
+    if (isMuted) {
+      player.unMute();
+      if (!isPlaying) {
+        player.playVideo();
       }
+    } else {
+      player.mute();
     }
+    setIsMuted(!isMuted);
   };
 
   return (
@@ -111,6 +131,24 @@ function App() {
         )}
       </header>
       <main className="content">
+        <div id="youtube-player" style={{ position: 'absolute', opacity: 0, pointerEvents: 'none', height: '1px', width: '1px' }}></div>
+        
+        <div className="audio-controls">
+          <button 
+            className="playback-button"
+            onClick={togglePlayback}
+            disabled={isLoading}
+          >
+            {isLoading ? '⌛' : isPlaying ? '⏸️' : '▶️'}
+          </button>
+          <button 
+            className="mute-button"
+            onClick={toggleMute}
+            disabled={isLoading}
+          >
+            {isMuted ? '🔈' : '🔊'}
+          </button>
+        </div>
       </main>
       <div className="invitation-text">
         <p>
@@ -122,10 +160,6 @@ function App() {
       <footer className="footer">
         <p>© 2024-25 Order of the Golden Bull, All rights reserved.</p>
       </footer>
-      <div id="youtube-player" style={{ display: 'none' }}></div> {/* 映像を非表示 */}
-      <button className="mute-button" onClick={toggleMute}>
-        {isMuted ? '🔈 Unmute' : '🔇 Mute'}
-      </button>
     </div>
   );
 }
