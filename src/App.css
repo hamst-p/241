@@ -161,8 +161,8 @@ html, body {
 
 @media (min-width: 601px) and (max-width: 1024px) {
   .header-text {
-    font-size: 2rem; /* 適宜調整 */
-    font-weight: normal; /* ボールド解除 */
+    font-size: 2rem; 
+    font-weight: normal; 
   }
 }
 
@@ -203,7 +203,7 @@ html, body {
     width: 85%;
     height: 70px;
     bottom: 40px;
-    margin-bottom: 5px; /* フッターの5px上に配置 */
+    margin-bottom: 5px;
   }
 
   .dock-menu {
