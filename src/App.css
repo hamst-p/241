@@ -63,6 +63,8 @@ html, body {
 
 .header-text {
   width: 100%;
+  font-size: 2rem;
+  font-weight: normal;
 }
 
 .invitation-text {
@@ -157,19 +159,41 @@ html, body {
   transform: scale(1.2) translateY(-5px);
 }
 
+@media (min-width: 601px) and (max-width: 1024px) {
+  .header-text {
+    font-size: 2rem; /* 適宜調整 */
+    font-weight: normal; /* ボールド解除 */
+  }
+}
+
+.invitation-text {
+  width: 75%;
+}
+
+.audio-controls {
+  position: fixed;
+  top: calc(18px + 80px);
+  left: 10px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  z-index: 1000;
+  padding-top: 5px;
+}
+
 @media (max-width: 600px) {
   .header-text {
-    font-size: 1.5rem;
+    font-size: 1.8rem;
     font-weight: normal;
   }
 
   .invitation-text {
     width: 58%;
-    margin-top: 3px; 
+    margin-top: 10px; 
   }
 
   .audio-controls {
-    top: calc(18px + 60px);
+    top: calc(18px + 80px);
     left: 10px;
     flex-direction: column;
     gap: 10px;
